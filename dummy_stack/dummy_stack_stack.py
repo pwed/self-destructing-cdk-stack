@@ -1,19 +1,16 @@
 from aws_cdk import (
-    # Duration,
+    Duration,
     Stack,
-    # aws_sqs as sqs,
 )
 from constructs import Construct
+import pwed_cdk
 
 class DummyStackStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # The code that defines your stack goes here
-
-        # example resource
-        # queue = sqs.Queue(
-        #     self, "DummyStackQueue",
-        #     visibility_timeout=Duration.seconds(300),
-        # )
+        ttl = pwed_cdk.pwed_ttl.Ttl(self, "pwed_ttl",
+            ttl=Duration.minutes(5),
+            poll_interval=Duration.minutes(1),
+        )
