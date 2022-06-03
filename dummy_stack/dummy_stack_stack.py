@@ -3,14 +3,14 @@ from aws_cdk import (
     Stack,
 )
 from constructs import Construct
-from pwed_cdk import pwed_ttl
+from pwed_cdk import ttl
 
 class DummyStackStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        ttl = pwed_ttl.Ttl(self, "pwed_ttl",
+        ttl.Ttl(self, "pwed_ttl",
             ttl=Duration.minutes(5),
             poll_interval=Duration.minutes(1),
         )
